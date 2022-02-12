@@ -5,18 +5,18 @@ import Profile from "../Profile";
 import "./usercard.css";
 
 const UserCard = () => {
-  return (
-    <div className="usercard">
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <Profile />
-        </Grid>
-        <Grid item xs={8}>
-          <HealthRecordCard />
-        </Grid>
-      </Grid>
-    </div>
-  );
+    return (
+        <div className="usercard">
+            <Grid container spacing={2}>
+                <Grid item xs={4}>
+                    <Profile />
+                </Grid>
+                <Grid item xs={8}>
+                    <HealthRecordCard />
+                </Grid>
+            </Grid>
+        </div>
+    );
 };
 
 export default UserCard;

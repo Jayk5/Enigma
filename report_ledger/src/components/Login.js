@@ -70,13 +70,13 @@ export default function SignIn() {
                         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                             Sign In
                         </Button>
-                        <Grid container>
+                        {/* <Grid container>
                             <Grid item>
                                 <Typography component={Link} to="/signup" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Typography>
                             </Grid>
-                        </Grid>
+                        </Grid> */}
                         <Grid container>
                             <Grid item>
                                 <Typography component={Link} to="/" variant="body2">

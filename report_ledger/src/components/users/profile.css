@@ -8,7 +8,7 @@
 .profile-box {
     background-color: rgb(89, 149, 206);
     height: 600px;
-    /* border-radius: 8%; */
+    border-radius: 7px;
 }
 
 .iconandtext {
