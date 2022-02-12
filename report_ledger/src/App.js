@@ -6,6 +6,7 @@ import SignIn from "./components/Login";
 import SignUp from "./components/Signup";
 import HospSignup from "./components/hospital/HospSignup";
 import HospLogIn from "./components/hospital/HospLogIn";
+import HospitalCard from "./components/HospitalView/HospitalCard";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/signup" exact element={<SignUp />} />
       <Route path="/hospsignup" exact element={<HospSignup />} />
       <Route path="/hosplogin" exact element={<HospLogIn />} />
+      <Route path="/hospital/dashboard" exact element={<HospitalCard />} />
     </Routes>
   );
 }
