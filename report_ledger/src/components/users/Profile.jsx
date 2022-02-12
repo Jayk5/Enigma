@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
+import { useNavigate } from "react-router-dom";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -13,12 +14,30 @@ import { TableContainer, Table, TableHead, TableBody, TableCell, TableRow } from
 import { Paper } from "@mui/material";
 import Button from "@mui/material/Button";
 import "./profile.css";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+
+const auth = getAuth();
 
 function createData(attr, val) {
     return { attr, val };
 }
 
 export default function Profile() {
+    const navigate = useNavigate();
+
+    const signUserOut = () => {
+        signOut(auth)
+            .then(() => {
+                // Sign-out successful.
+                console.log("Signed Out Succesfully");
+                // navigate("/");
+            })
+            .catch((error) => {
+                // An error happened.
+                console.log("Error", error);
+            });
+    };
+
     const rows = [
         createData("Date of Birth", "22 April 2003"),
         createData("Gender", "Male"),
@@ -70,6 +89,11 @@ export default function Profile() {
                         </div>
                         <div>
                             <Button variant="contained">Modify</Button>
+                        </div>
+                        <div>
+                            <Button variant="contained" onClick={signUserOut()}>
+                                Logout
+                            </Button>
                         </div>
                     </div>
                 </nav>

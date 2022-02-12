@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -26,22 +26,24 @@ const auth = getAuth();
 const theme = createTheme();
 
 export default function Album() {
+    const navigate = useNavigate();
+    // navigate("/patient");
+
     const [curUser, setCurUser] = useState(auth.currentUser);
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             setCurUser(auth.currentUser);
-            if (user) console.log("User Signed In");
-            else console.log("User Signed out");
+            if (user) {
+                console.log("User Signed In");
+            } else console.log("User Signed out");
         });
     }, []);
 
     const signIn = () => {
-        signInWithPopup(auth, provider)
-            .then()
-            .catch((error) => {
-                console.log("Error", error);
-            });
+        signInWithPopup(auth, provider).catch((error) => {
+            console.log("Error", error);
+        });
     };
 
     const signUserOut = () => {

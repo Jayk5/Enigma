@@ -28,7 +28,7 @@ export default function HospSignup() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" sx={{ pb: 10 }}>
                 <CssBaseline />
                 <Box
                     sx={{
@@ -115,7 +115,6 @@ export default function HospSignup() {
                         </Grid>
                     </Box>
                 </Box>
-                {/* <Copyright sx={{ mt: 5 }} /> */}
             </Container>
         </ThemeProvider>
     );
