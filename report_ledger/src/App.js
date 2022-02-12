@@ -3,20 +3,20 @@ import { Route, Routes } from "react-router-dom";
 
 import Album from "./components/Album";
 import SignIn from "./components/Login";
-import SignUp from "./components/Signup";
+import PatientData from "./components/PatientData";
 import HospSignup from "./components/hospital/HospSignup";
 import HospLogIn from "./components/hospital/HospLogIn";
-import HospitalCard from "./components/HospitalView/HospitalCard";
+import UserCard from "./components/users/userview/UserCard";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Album />} />
       <Route path="/login" exact element={<SignIn />} />
-      <Route path="/signup" exact element={<SignUp />} />
+      <Route path="/patientdata" exact element={<PatientData />} />
       <Route path="/hospsignup" exact element={<HospSignup />} />
       <Route path="/hosplogin" exact element={<HospLogIn />} />
-      <Route path="/hospital/dashboard" exact element={<HospitalCard />} />
+      <Route path="/patient" exact element={<UserCard />} />
     </Routes>
   );
 }

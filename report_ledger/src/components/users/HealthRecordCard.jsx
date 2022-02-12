@@ -5,16 +5,18 @@ import { Box } from "@mui/material";
 import "./healthrecordcard.css";
 
 const HealthRecordCard = () => {
-  return (
-    <>
-      <div className="health-card">
-        <Typography variant="h4">Health Reports</Typography>
-        <div className="details">
-          <HealthRecord />
-        </div>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="health-card">
+                <Typography variant="h4" className="headdingwh">
+                    Health Reports
+                </Typography>
+                <div className="details">
+                    <HealthRecord />
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default HealthRecordCard;

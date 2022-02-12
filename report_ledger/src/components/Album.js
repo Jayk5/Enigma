@@ -17,23 +17,45 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { faHospitalUser } from "@fortawesome/free-solid-svg-icons";
-
-// function Copyright() {
-//     return (
-//         <Typography variant="body2" color="text.secondary" align="center">
-//             {"Copyright © "}
-//             <Link color="inherit" href="https://mui.com/">
-//                 Your Website
-//             </Link>{" "}
-//             {new Date().getFullYear()}
-//             {"."}
-//         </Typography>
-//     );
-// }
+import "./utilities/firebaseconfig";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+const provider = new GoogleAuthProvider();
+const auth = getAuth();
 
 const theme = createTheme();
 
 export default function Album() {
+    const [curUser, setCurUser] = useState(auth.currentUser);
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            setCurUser(auth.currentUser);
+            if (user) console.log("User Signed In");
+            else console.log("User Signed out");
+        });
+    }, []);
+
+    const signIn = () => {
+        signInWithPopup(auth, provider)
+            .then()
+            .catch((error) => {
+                console.log("Error", error);
+            });
+    };
+
+    const signUserOut = () => {
+        signOut(auth)
+            .then(() => {
+                // Sign-out successful.
+                console.log("Signed Out Succesfully");
+            })
+            .catch((error) => {
+                // An error happened.
+                console.log("Error", error);
+            });
+    };
+
     return (
         <Container
             maxWidth="false"
@@ -70,12 +92,18 @@ export default function Album() {
                                 blockchain
                             </Typography>
                             <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center">
-                                <Button component={Link} to="/login" variant="contained">
-                                    LOGIN
-                                </Button>
-                                <Button component={Link} to="/signup" variant="contained">
+                                {!curUser ? (
+                                    <Button onClick={signIn} variant="contained">
+                                        LOGIN
+                                    </Button>
+                                ) : (
+                                    <Button onClick={signUserOut} variant="contained">
+                                        LOGOUT
+                                    </Button>
+                                )}
+                                {/* <Button component={Link} to="/signup" variant="contained">
                                     SIGN UP
-                                </Button>
+                                </Button> */}
                                 <Button component={Link} to="/hospsignup" variant="contained">
                                     Hospital Sign Up
                                 </Button>
