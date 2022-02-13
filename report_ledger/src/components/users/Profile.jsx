@@ -28,12 +28,10 @@ export default function Profile() {
     const signUserOut = () => {
         signOut(auth)
             .then(() => {
-                // Sign-out successful.
                 console.log("Signed Out Succesfully");
-                // navigate("/");
+                navigate("/");
             })
             .catch((error) => {
-                // An error happened.
                 console.log("Error", error);
             });
     };
@@ -87,11 +85,11 @@ export default function Profile() {
                                 </TableContainer>
                             </List>
                         </div>
-                        <div>
+                        {/* <div>
                             <Button variant="contained">Modify</Button>
-                        </div>
+                        </div> */}
                         <div>
-                            <Button variant="contained" onClick={signUserOut()}>
+                            <Button variant="contained" onClick={signUserOut}>
                                 Logout
                             </Button>
                         </div>

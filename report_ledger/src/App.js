@@ -7,17 +7,21 @@ import PatientData from "./components/PatientData";
 import HospSignup from "./components/hospital/HospSignup";
 import HospLogIn from "./components/hospital/HospLogIn";
 import UserCard from "./components/users/userview/UserCard";
-
+import HospitalCard from "./components/HospitalView/HospitalCard";
+import DataProvider from "./context/PatientContext";
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Album />} />
-      <Route path="/login" exact element={<SignIn />} />
-      <Route path="/patientdata" exact element={<PatientData />} />
-      <Route path="/hospsignup" exact element={<HospSignup />} />
-      <Route path="/hosplogin" exact element={<HospLogIn />} />
-      <Route path="/patient" exact element={<UserCard />} />
-    </Routes>
+    <DataProvider>
+      <Routes>
+        <Route path="/" element={<Album />} />
+        <Route path="/login" exact element={<SignIn />} />
+        <Route path="/patientdata" exact element={<PatientData />} />
+        <Route path="/patient" exact element={<UserCard />} />
+        <Route path="/hospsignup" exact element={<HospSignup />} />
+        <Route path="/hosplogin" exact element={<HospLogIn />} />
+        <Route path="/hospital" exact element={<HospitalCard />} />
+      </Routes>
+    </DataProvider>
   );
 }
 
