@@ -19,10 +19,11 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { faHospitalUser } from "@fortawesome/free-solid-svg-icons";
 import "./utilities/firebaseconfig";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
-
+const db = getFirestore();
 const theme = createTheme();
 
 export default function Album() {
@@ -41,9 +42,21 @@ export default function Album() {
     }, []);
 
     const signIn = () => {
-        signInWithPopup(auth, provider).catch((error) => {
-            console.log("Error", error);
-        });
+        signInWithPopup(auth, provider)
+          .then(async () => {
+            const docSnap = await getDoc(
+              doc(db, "studentsDetails", auth?.currentUser?.email)
+            );
+              if (docSnap.exists()) {
+                  navigate("/patient");
+              }
+              else {
+                  navigate("/patientdata", { replace: true });
+              }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     };
 
     const signUserOut = () => {
